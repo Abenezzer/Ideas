@@ -63,7 +63,7 @@
                 </button>
             </div>
 
-            <form action="/ideas" method="POST" class="flex flex-col flex-1 min-h-0">
+            <form action="/ideas" method="POST" enctype="multipart/form-data" class="flex flex-col flex-1 min-h-0">
                 @csrf
 
                 <template x-for="(link, index) in links" :key="'link-input-' + index">
@@ -82,6 +82,14 @@
                             <input type="text" id="title" name="title" required
                                 placeholder="What is your brilliant idea called?"
                                 class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-lg">
+                        </div>
+                        <div class="mt-4 flex text-sm/6 text-gray-400">
+                            <label for="file-upload"
+                                class="relative cursor-pointer rounded-md bg-transparent font-semibold text-indigo-400 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-indigo-500 hover:text-indigo-300">
+                                <span>Upload a file</span>
+                                <input id="file-upload" type="file" name="image" class="sr-only" />
+                            </label>
+                            <p class="pl-1">or drag and drop</p>
                         </div>
 
                         <div>

@@ -18,6 +18,12 @@
             <span class="btn ">{{ $idea->created_at->diffForHumans() }}</span>
         </div>
         <div class="card bg-slate-800">
+            @if ($idea->image_path)
+                <figure>
+                    <img src="{{ Storage::url($idea->image_path) }}"
+                         />
+                </figure>
+            @endif
             <div class="card-body">
                 <p>{{ $idea->description }}</p>
             </div>

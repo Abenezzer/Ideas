@@ -15,6 +15,7 @@ class IdeaController extends Controller
      */
     public function index(Request $request)
     {
+    
         $ideas = Auth::user()
             ->ideas()
             ->with('user')
@@ -41,7 +42,13 @@ class IdeaController extends Controller
     public function store(StoreIdeaRequest $request)
     {
 
-        $idea = Auth::user()->ideas()->create($request->safe()->except('steps'));
+        
+        
+        $idea = Auth::user()->ideas()->create($request->safe()->except(['steps', 'image']));
+
+        $imgPath = $request->file('image')->store('idea', 'public');
+
+        $idea->update(['image_path' => $imgPath]);
 
         $idea->steps()->createMany(
             collect($request->validated('steps'))->map(fn ($step) => ['description' => $step])
