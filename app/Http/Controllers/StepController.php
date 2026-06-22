@@ -52,7 +52,9 @@ class StepController extends Controller
      */
     public function update(Request $request, Step $step)
     {
-        //
+        $step->update(['complated' => !$step->complated]);
+
+        return back();
     }
 
     /**
